@@ -1,0 +1,19 @@
+@import 'node_modules/normalize.css/normalize.css', 'fonts';
+
+html,
+body {
+    font-family: Roboto, sans-serif;
+    height: 100%;
+}
+
+#__next {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+}
