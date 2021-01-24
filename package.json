@@ -11,9 +11,11 @@
         "test": "jest",
         "test:watch": "npm test -- --watch",
         "lint": "eslint --ext .js ./",
+        "lint:fix": "eslint --fix . --ignore-path ./.gitignore",
         "prettier": "prettier --write src/*"
     },
     "dependencies": {
+        "classnames": "^2.2.6",
         "next": "^10.0.5",
         "normalize.css": "^8.0.1",
         "prop-types": "^15.7.2",
@@ -26,7 +28,12 @@
         "@testing-library/react": "^11.2.3",
         "babel-jest": "^26.6.3",
         "eslint": "^7.15.0",
+        "eslint-config-prettier": "^7.2.0",
+        "eslint-plugin-jsx-a11y": "^6.4.1",
+        "eslint-plugin-prettier": "^3.3.1",
         "eslint-plugin-react": "^7.21.5",
+        "eslint-plugin-react-hooks": "^4.2.0",
+        "eslint-plugin-simple-import-sort": "^7.0.0",
         "jest": "^26.6.3",
         "jest-css-modules": "^2.1.0",
         "prettier": "^2.2.1"

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Header from '~/components/Header/Header';
+import Header from '~/components/Common/Header/Header';
 
 describe('Header test', () => {
     const text = 'test header';

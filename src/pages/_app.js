@@ -1,11 +1,15 @@
 import PropTypes from 'prop-types';
+import StoreProvider from '~/store';
+
 import '~/styles/base.scss';
 
 function App({ Component, pageProps }) {
     return (
-        <div className="app" data-testid="app">
-            <Component {...pageProps} />
-        </div>
+        <StoreProvider>
+            <div className="app" data-testid="app">
+                <Component {...pageProps} />
+            </div>
+        </StoreProvider>
     );
 }
 

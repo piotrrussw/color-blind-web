@@ -1,11 +1,11 @@
 import Head from 'next/head';
-import Header from '~/components/Header';
+import Header from '~/components/Common/Header';
 
 function Index() {
     return (
         <>
             <Head>
-                <title>Hello next</title>
+                <title>Color Blind App</title>
             </Head>
 
             <main data-testid="home-page">

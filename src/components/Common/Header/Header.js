@@ -1,4 +1,4 @@
-import styles from '~/components/Header/Header.module.scss';
+import styles from '~/components/Common/Header/Header.module.scss';
 import PropTypes from 'prop-types';
 
 function Header({ children }) {
