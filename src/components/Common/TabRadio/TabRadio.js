@@ -2,35 +2,46 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from '~/components/Common/TabRadio/TabRadio.module.scss';
 
-function TabRadio({ options, onChange, active }) {
+function TabRadio({ options, onChange, active, name }) {
+    const handleChange = (event) => {
+        const newValue = parseInt(event.target.value);
+
+        if (newValue !== active) {
+            onChange(newValue);
+        }
+    };
+
     return (
         <div className={styles.container}>
-            {options.map(({ value, name }) => {
-                return (
-                    <>
-                        <div
-                            className={classNames(styles.option, {
-                                [styles.active]: active === value,
-                            })}
-                        >
-                            <label htmlFor={name} />
-                            <input type="radio" value={value} name={name} onChange={onChange} />
-                        </div>
-                    </>
-                );
-            })}
+            {options.map(({ id, label }) => (
+                <div
+                    key={name + '-' + id}
+                    className={classNames(styles.option, {
+                        [styles.active]: active === id,
+                    })}
+                >
+                    <label className={styles.label} htmlFor={label.trim()}>
+                        {label}
+                    </label>
+                    <input
+                        className={styles.radio}
+                        id={label.trim()}
+                        type="radio"
+                        value={id}
+                        name={name}
+                        onChange={handleChange}
+                    />
+                </div>
+            ))}
         </div>
     );
 }
 
-TabRadio.defaultProps = {
-    active: '',
-};
-
 TabRadio.propTypes = {
     options: PropTypes.array.isRequired,
     onChange: PropTypes.func.isRequired,
-    active: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    active: PropTypes.number.isRequired,
 };
 
 export default TabRadio;

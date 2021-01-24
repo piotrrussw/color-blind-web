@@ -1,7 +1,37 @@
 .container {
-  .option {
-    .active {
+    display: flex;
+    margin: 0 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid #a5a4a4;
 
+    .option {
+        border-right: 2px solid #a5a4a4;
+        padding: 0.3rem 0.5rem;
+        border-radius: 0.75rem 0 0 0.75rem;
+        cursor: pointer;
+
+        &.active {
+            background: #c5c5c5;
+        }
+
+        &:last-of-type {
+            border-right: none;
+            border-radius: 0 0.75rem 0.75rem 0;
+        }
+
+        .label {
+            padding: 0 0.5rem;
+        }
+
+        .radio {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .active {
+        }
     }
-  }
 }

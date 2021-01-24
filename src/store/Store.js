@@ -1,10 +1,11 @@
 import { createContext, useReducer } from 'react';
-import { FLASH_MODE_OFF, COLOR_VISION_TYPES, CAMERA_TYPE_BACK } from '~/constants';
+import { FLASH_MODE_OFF, COLOR_VISION_TYPES, CAMERA_TYPES } from '~/constants';
 
 const initialState = {
-    colorVision: COLOR_VISION_TYPES[0],
+    colorVision: COLOR_VISION_TYPES[0].id,
     colorVisionTypes: COLOR_VISION_TYPES,
-    cameraType: CAMERA_TYPE_BACK,
+    cameraType: CAMERA_TYPES[0].id,
+    cameraTypes: CAMERA_TYPES,
     flashMode: FLASH_MODE_OFF,
     correctionLevel: 0,
     showColorLabels: true,
