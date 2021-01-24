@@ -46,8 +46,10 @@
         }
     },
     "lint-staged": {
-        "./**/*.{js,jsx,ts,tsx}": [
-            "eslint --fix"
+        "src/**/*.js": [
+            "eslint --fix . --ignore-path ./.gitignore",
+            "prettier --write src/*",
+            "jest"
         ]
     }
 }
