@@ -78,9 +78,9 @@ class ColorblindRenderer {
     getMaterial() {
         const uniforms = {
             map: { value: undefined },
-            r: { value: colorModes.normal.r },
-            g: { value: colorModes.normal.g },
-            b: { value: colorModes.normal.b },
+            r: { value: colorModes.achromatopsia.r },
+            g: { value: colorModes.achromatopsia.g },
+            b: { value: colorModes.achromatopsia.b },
         };
 
         const material = new THREE.ShaderMaterial({
