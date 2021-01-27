@@ -1,9 +1,11 @@
-import PropTypes from 'prop-types';
+import styles from '~/components/Home/BottomBar/BottomBar.module.scss';
 
-function BottomBar(props) {
-    return <div></div>;
+function BottomBar() {
+    return (
+        <div className={styles.container}>
+            <div>slider</div>
+        </div>
+    );
 }
-
-BottomBar.propTypes = {};
 
 export default BottomBar;

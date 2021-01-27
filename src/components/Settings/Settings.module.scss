@@ -50,35 +50,13 @@ $settings-border: 1px solid rgba(112, 112, 112, 0.7);
             border: $settings-border;
             user-select: none;
 
-            .tab {
-                display: flex;
-                align-items: center;
-                border-radius: 0.5rem;
-                border: 1px solid #a5a4a4;
-                height: 2rem;
-                margin: 0 1rem;
-
-                &.active {
-                }
-
-                .label {
-                    padding: 0 0.5rem;
-                    font-weight: 400;
-                    font-size: 0.875rem;
-                    border-right: 1px solid #a5a4a4;
-
-                    &:last-of-type {
-                        border-right: none;
-                    }
-                }
-            }
-
             .label {
                 display: flex;
                 align-items: center;
                 font-size: 1rem;
                 padding: 0.25rem 1rem;
                 height: 2.5rem;
+                width: 100%;
             }
 
             .radio {
@@ -91,7 +69,7 @@ $settings-border: 1px solid rgba(112, 112, 112, 0.7);
 
             .iconCheck {
                 display: flex;
-                width: 1.5rem;
+                width: 2rem;
                 height: 1.15rem;
                 padding: 0 1rem;
                 animation: fadeIn 300ms;

@@ -5,11 +5,11 @@ import styles from '~/components/Home/Home.module.scss';
 
 function Home() {
     return (
-        <div className={styles.container}>
+        <main className={styles.container}>
             <TopBar />
             <CorrectionCamera />
             <BottomBar />
-        </div>
+        </main>
     );
 }
 

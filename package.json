@@ -21,7 +21,9 @@
         "prop-types": "^15.7.2",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
-        "sass": "^1.30.0"
+        "react-three-fiber": "^5.3.17",
+        "sass": "^1.30.0",
+        "three": "0.102.0"
     },
     "devDependencies": {
         "@testing-library/jest-dom": "^5.11.9",
@@ -42,8 +44,8 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "npm run lint:fix && npm test",
-            "pre-push": "npm run lint:fix && npm test"
+            "pre-commit": "npm run lint:fix && npm run prettier && npm test",
+            "pre-push": "npm run lint:fix && npm run prettier && npm test"
         }
     }
 }

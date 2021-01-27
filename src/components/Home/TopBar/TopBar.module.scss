@@ -1,0 +1,60 @@
+.nav {
+    position: absolute;
+    height: 3.3125rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.9);
+
+    .topBarContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 350px;
+    }
+
+    .leftPanel {
+        display: flex;
+        flex: 3;
+    }
+
+    .centerPanel {
+        flex: 6;
+    }
+
+    .rightPanel {
+        display: flex;
+        justify-content: center;
+        flex: 3;
+    }
+
+    .iconContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        padding: 0 0.5rem;
+        cursor: pointer;
+
+        .iconReverse {
+            display: flex;
+            height: 1.5rem;
+            width: 100%;
+            margin-top: 0.35rem;
+        }
+
+        .iconFlashlight {
+            display: flex;
+            height: 2rem;
+            width: 100%;
+        }
+
+        .iconSettings {
+            display: flex;
+            height: 2rem;
+            width: 2rem;
+            margin-top: 0.5rem;
+        }
+    }
+}

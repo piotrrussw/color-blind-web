@@ -4,10 +4,16 @@ export const FLASH_MODE_ON = 'torch';
 
 // color vision types
 export const COLOR_VISION_TYPES = [
-    { id: 1, label: 'Normal vision', colorDeficiency: null },
-    { id: 2, label: 'Protanopia', colorDeficiency: 'red' },
-    { id: 3, label: 'Deutranopia', colorDeficiency: 'green' },
-    { id: 4, label: 'Tritanopia', colorDeficiency: 'blue' },
+    { id: 1, label: 'Normal vision', colorDeficiency: null, value: 'normal' },
+    { id: 2, label: 'Protanopia', colorDeficiency: 'red', value: 'protanopia' },
+    { id: 3, label: 'Deutranopia', colorDeficiency: 'green', value: 'deuteranopia' },
+    { id: 4, label: 'Tritanopia', colorDeficiency: 'blue', value: 'tritanopia' },
+    {
+        id: 5,
+        label: 'Achromatopsia',
+        colorDeficiency: 'only black and white',
+        value: 'achromatopsia',
+    },
 ];
 
 export const CAMERA_TYPES = [

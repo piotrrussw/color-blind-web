@@ -15,7 +15,7 @@ function ColorNames() {
 
     return (
         <div className={styles.control}>
-            <div className={styles.label}>Camera</div>
+            <div className={styles.label}>Show color label</div>
             <TabRadio
                 options={COLOR_NAMES_TYPES}
                 active={active.id}

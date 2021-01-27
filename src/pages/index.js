@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Header from '~/components/Common/Header';
+import Home from '~/components/Home';
 
 function Index() {
     return (
@@ -7,10 +7,7 @@ function Index() {
             <Head>
                 <title>Color Blind App</title>
             </Head>
-
-            <main data-testid="home-page">
-                <Header>Next quick start template</Header>
-            </main>
+            <Home />
         </>
     );
 }
