@@ -26,10 +26,22 @@ function TopBar() {
         <nav className={styles.nav}>
             <div className={styles.topBarContainer}>
                 <div className={styles.leftPanel}>
-                    <div className={styles.iconContainer} onClick={handleReverseCamera}>
+                    <div
+                        className={styles.iconContainer}
+                        onClick={handleReverseCamera}
+                        onKeyDown={handleReverseCamera}
+                        role="button"
+                        tabIndex="0"
+                    >
                         <IconReverseCamera className={styles.iconReverse} />
                     </div>
-                    <div className={styles.iconContainer} onClick={handleFlashlight}>
+                    <div
+                        className={styles.iconContainer}
+                        onClick={handleFlashlight}
+                        onKeyDown={handleFlashlight}
+                        role="button"
+                        tabIndex="0"
+                    >
                         <IconFlashlight className={styles.iconFlashlight} />
                     </div>
                 </div>

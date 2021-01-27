@@ -2,22 +2,7 @@ import * as THREE from 'three';
 import { VertexShader, FragmentShader } from '~/utils/shaders';
 import { colorModes } from '~/utils/colorModes';
 
-const ColorModeAchromatopsia = {
-    name: 'Achromatopsia',
-    r: new THREE.Vector3(0.299, 0.587, 0.114),
-    g: new THREE.Vector3(0.299, 0.587, 0.114),
-    b: new THREE.Vector3(0.299, 0.587, 0.114),
-};
-
 class ColorblindRenderer {
-    video = null;
-    renderer = null;
-    scene = null;
-    camera = null;
-    texture = null;
-    materialInstances = [];
-    animationInstance = null;
-
     constructor(video) {
         this.video = video;
     }
@@ -76,7 +61,7 @@ class ColorblindRenderer {
     }
 
     initTexture() {
-        this.texture = new THREE.VideoTexture(video);
+        this.texture = new THREE.VideoTexture(this.video);
         this.texture.minFilter = THREE.LinearFilter;
         this.texture.magFilter = THREE.LinearFilter;
         this.texture.format = THREE.RGBFormat;
@@ -107,7 +92,7 @@ class ColorblindRenderer {
         material.uniforms.map.value = this.texture;
         material.transparent = true;
 
-        this.materialInstances.push(material);
+        // this.materialInstances.push(material);
 
         return material;
     }
