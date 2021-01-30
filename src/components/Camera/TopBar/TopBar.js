@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { IconFlashlight, IconReverseCamera, IconSettings } from '~/components/Common/Icons';
+import { IconReverseCamera, IconSettings } from '~/components/Common/Icons';
 import { useStore } from '~/store';
 import { COLOR_VISION_TYPES } from '~/constants';
 import Header from '~/components/Common/Header';

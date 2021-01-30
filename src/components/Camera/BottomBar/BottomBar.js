@@ -29,17 +29,11 @@ function BottomBar() {
                     values={[store.correctionLevel]}
                     onChange={(values) => dispatch({ correctionLevel: values[0] })}
                     renderTrack={({ props, children }) => (
-                        <div
-                            {...props}
-                            className={styles.track}
-                            style={{ ...props.style, background }}
-                        >
+                        <div {...props} className={styles.track} style={{ background }}>
                             {children}
                         </div>
                     )}
-                    renderThumb={({ props }) => (
-                        <div className={styles.thumb} {...props} style={props.style} />
-                    )}
+                    renderThumb={({ props }) => <div className={styles.thumb} {...props} />}
                 />
             </div>
         </div>

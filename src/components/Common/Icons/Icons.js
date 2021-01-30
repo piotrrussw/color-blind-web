@@ -7,15 +7,6 @@ export const IconReverseCamera = (props) => (
     </svg>
 );
 
-export const IconFlashlight = (props) => (
-    <svg {...props}>
-        <path
-            d="M2.557 14.169l3.409 3.409v6.286h6.818v-6.286l3.409-3.409V7.67l-13.594.022zM8.246 0h2.259v3.409H8.246zM0 4.176l1.593-1.619 2.391 2.429-1.592 1.619zm14.76.81l2.4-2.424 1.593 1.619-2.395 2.424z"
-            fill="#c5c5c5"
-        />
-    </svg>
-);
-
 export const IconSettings = (props) => (
     <svg {...props}>
         <path
