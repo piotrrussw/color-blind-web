@@ -1,5 +1,5 @@
-import Head from 'next/head';
 import Camera from '~/components/Camera';
+import Head from 'next/head';
 
 function CameraPage() {
     return (
