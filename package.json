@@ -12,7 +12,8 @@
         "test:watch": "npm test -- --watch",
         "lint": "eslint --ext .js ./",
         "lint:fix": "eslint --fix . --ignore-path ./.gitignore",
-        "prettier": "prettier --write src/*"
+        "prettier": "prettier --write src/*",
+        "import-sort": "import-sort --write src/**/*.js"
     },
     "dependencies": {
         "classnames": "^2.2.6",
@@ -35,8 +36,8 @@
         "eslint-plugin-prettier": "^3.3.1",
         "eslint-plugin-react": "^7.21.5",
         "eslint-plugin-react-hooks": "^4.2.0",
-        "eslint-plugin-simple-import-sort": "^7.0.0",
         "husky": "^4.3.8",
+        "import-sort-cli": "^6.0.0",
         "jest": "^26.6.3",
         "jest-css-modules": "^2.1.0",
         "lint-staged": "^10.5.3",
@@ -44,8 +45,14 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "npm run lint:fix && npm run prettier && npm test",
-            "pre-push": "npm run lint:fix && npm run prettier && npm test"
+            "pre-commit": "npm run lint:fix && npm run prettier && npm run import-sort",
+            "pre-push": "npm run lint:fix && npm run prettier && npm run import-sort && npm test"
+        }
+    },
+    "importSort": {
+        ".js, .jsx, .es6, .es, .mjs, .ts, .tsx": {
+            "parser": "babylon",
+            "style": "eslint"
         }
     }
 }

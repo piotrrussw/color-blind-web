@@ -1,5 +1,7 @@
 import * as THREE from 'three';
-import { VertexShader, FragmentShader } from '~/utils/shaders';
+
+import { FragmentShader, VertexShader } from '~/utils/shaders';
+
 import { colorModes } from '~/utils/colorModes';
 
 class ColorblindRenderer {

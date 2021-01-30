@@ -1,5 +1,5 @@
+import { CAMERA_TYPES, COLOR_VISION_TYPES, FLASH_MODE_OFF } from '~/constants';
 import { createContext, useReducer } from 'react';
-import { FLASH_MODE_OFF, COLOR_VISION_TYPES, CAMERA_TYPES } from '~/constants';
 
 const initialState = {
     colorVision: COLOR_VISION_TYPES[0].id,

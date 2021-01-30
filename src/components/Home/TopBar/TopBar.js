@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { IconFlashlight, IconReverseCamera, IconSettings } from '~/components/Common/Icons';
 import { useStore } from '~/store';
 import { COLOR_VISION_TYPES, FLASH_MODE_OFF, FLASH_MODE_ON } from '~/constants';
-import styles from '~/components/Home/TopBar/TopBar.module.scss';
 import Header from '~/components/Common/Header';
+import styles from '~/components/Home/TopBar/TopBar.module.scss';
 
 function TopBar() {
     const [store, dispatch] = useStore();
