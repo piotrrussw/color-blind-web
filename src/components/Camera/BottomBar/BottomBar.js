@@ -1,4 +1,4 @@
-import styles from '~/components/Home/BottomBar/BottomBar.module.scss';
+import styles from '~/components/Camera/BottomBar/BottomBar.module.scss';
 
 function BottomBar() {
     return (

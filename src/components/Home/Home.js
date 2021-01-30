@@ -1,14 +1,17 @@
-import TopBar from '~/components/Home/TopBar';
-import CorrectionCamera from '~/components/Home/CorrectionCamera';
-import BottomBar from '~/components/Home/BottomBar';
 import styles from '~/components/Home/Home.module.scss';
+import Image from 'next/image';
+import Link from 'next/link';
 
 function Home() {
     return (
         <main className={styles.container}>
-            <TopBar />
-            <CorrectionCamera />
-            <BottomBar />
+            <header className={styles.header}>
+                <Image src="/logo.png" alt="color blind app logo" width={128} height={128} />
+                <h1>Color blind app</h1>
+            </header>
+            <Link href="/camera">
+                <a className={styles.button}>Start</a>
+            </Link>
         </main>
     );
 }

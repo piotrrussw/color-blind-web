@@ -3,7 +3,7 @@ import { IconFlashlight, IconReverseCamera, IconSettings } from '~/components/Co
 import { useStore } from '~/store';
 import { COLOR_VISION_TYPES, FLASH_MODE_OFF, FLASH_MODE_ON } from '~/constants';
 import Header from '~/components/Common/Header';
-import styles from '~/components/Home/TopBar/TopBar.module.scss';
+import styles from '~/components/Camera/TopBar/TopBar.module.scss';
 
 function TopBar() {
     const [store, dispatch] = useStore();

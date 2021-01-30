@@ -1,5 +1,37 @@
 .container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     flex: 1;
+    background: rgb(0, 0, 0);
+
+    .header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 4.5rem 0;
+
+        .logo {
+            width: 8rem;
+            height: 8rem;
+        }
+    }
+
+    .button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        height: 4.5rem;
+        width: 12rem;
+        border-radius: 0.25rem;
+        box-shadow: 0 0 0.125rem rgba(0, 0, 0, 0.23);
+        background: #e89464;
+        color: #000;
+        font-size: 1.5rem;
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
+    }
 }
