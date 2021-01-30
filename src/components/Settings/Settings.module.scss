@@ -12,6 +12,11 @@ $settings-border: 1px solid rgba(112, 112, 112, 0.7);
         border-bottom: $settings-border;
         margin-bottom: 2rem;
 
+        .link {
+            display: flex;
+            align-items: center;
+        }
+
         .header {
             display: flex;
             flex: 1;

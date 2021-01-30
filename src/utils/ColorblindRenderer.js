@@ -9,7 +9,8 @@ class ColorblindRenderer {
         this.video = video;
     }
 
-    render() {
+    render(colorVision) {
+        this.colorVision = colorVision;
         this.init();
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
 
@@ -36,7 +37,25 @@ class ColorblindRenderer {
     destroy() {
         cancelAnimationFrame(this.animationInstance);
         this.renderer.clear(true, true, true);
-        document.querySelector('canvas').remove();
+
+        if (document.querySelector('canvas')) {
+            document.querySelector('canvas').remove();
+        }
+    }
+
+    handleResize() {
+        const newAspect = window.innerWidth / window.innerHeight;
+
+        // TODO: better resize handling
+        this.camera.fov = Math.max(
+            this.camera.fov,
+            60
+            // Math.max(50, Math.min(this.camera.fov * (1 / newAspect), 180))
+        );
+
+        this.camera.aspect = newAspect;
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
     }
 
     initWebcamInput() {
@@ -50,7 +69,7 @@ class ColorblindRenderer {
 
     initCamera() {
         this.camera = new THREE.PerspectiveCamera(
-            70,
+            60,
             window.innerWidth / window.innerHeight,
             0.01,
             10
@@ -80,9 +99,9 @@ class ColorblindRenderer {
     getMaterial() {
         const uniforms = {
             map: { value: undefined },
-            r: { value: colorModes.achromatopsia.r },
-            g: { value: colorModes.achromatopsia.g },
-            b: { value: colorModes.achromatopsia.b },
+            r: { value: colorModes[this.colorVision].r },
+            g: { value: colorModes[this.colorVision].g },
+            b: { value: colorModes[this.colorVision].b },
         };
 
         const material = new THREE.ShaderMaterial({
@@ -97,6 +116,10 @@ class ColorblindRenderer {
         // this.materialInstances.push(material);
 
         return material;
+    }
+
+    updateMaterial() {
+        return null;
     }
 }
 

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { IconFlashlight, IconReverseCamera, IconSettings } from '~/components/Common/Icons';
 import { useStore } from '~/store';
-import { COLOR_VISION_TYPES, FLASH_MODE_OFF, FLASH_MODE_ON } from '~/constants';
+import { COLOR_VISION_TYPES } from '~/constants';
 import Header from '~/components/Common/Header';
 import styles from '~/components/Camera/TopBar/TopBar.module.scss';
 
@@ -11,13 +11,6 @@ function TopBar() {
     const handleReverseCamera = () => {
         const reversed = store.cameraTypes.find(({ id }) => id !== store.cameraType);
         dispatch({ cameraType: reversed.id });
-    };
-
-    const handleFlashlight = () => {
-        const flashMode = [FLASH_MODE_OFF, FLASH_MODE_ON].find(
-            (flash) => flash !== store.flashMode
-        );
-        dispatch({ flashMode });
     };
 
     const colorVision = COLOR_VISION_TYPES.find(({ id }) => id === store.colorVision);
@@ -34,15 +27,6 @@ function TopBar() {
                         tabIndex="0"
                     >
                         <IconReverseCamera className={styles.iconReverse} />
-                    </div>
-                    <div
-                        className={styles.iconContainer}
-                        onClick={handleFlashlight}
-                        onKeyDown={handleFlashlight}
-                        role="button"
-                        tabIndex="0"
-                    >
-                        <IconFlashlight className={styles.iconFlashlight} />
                     </div>
                 </div>
                 <div className={styles.centerPanel}>

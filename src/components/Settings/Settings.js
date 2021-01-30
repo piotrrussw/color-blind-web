@@ -3,20 +3,18 @@ import Header from '~/components/Common/Header';
 import ColorBlindType from '~/components/Settings/ColorBlindType';
 import Camera from '~/components/Settings/Camera';
 import ColorNames from '~/components/Settings/ColorNames';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 import styles from '~/components/Settings/Settings.module.scss';
 
 function Settings() {
-    const router = useRouter();
-
-    const handleBack = () => {
-        router.push('/');
-    };
-
     return (
         <main className={styles.container} data-testid="settings-page">
             <nav className={styles.nav}>
-                <IconArrowLeft className={styles.icon} onClick={handleBack} />
+                <Link href="/camera">
+                    <a className={styles.link}>
+                        <IconArrowLeft className={styles.icon} />
+                    </a>
+                </Link>
                 <Header className={styles.header}>Settings</Header>
             </nav>
 
