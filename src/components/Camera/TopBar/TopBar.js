@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { COLOR_VISION_TYPES } from '~/constants';
 import Header from '~/components/Common/Header';
 import styles from '~/components/Camera/TopBar/TopBar.module.scss';
+import { getCamerasList } from '~/utils/media';
 
 function TopBar() {
     const [store, dispatch] = useStore();
@@ -20,8 +21,14 @@ function TopBar() {
 
     useEffect(() => {
         if (navigator.mediaDevices) {
-            const supportsFacingMode = navigator.mediaDevices.getSupportedConstraints().facingMode;
-            setFacingMode(supportsFacingMode);
+            getCamerasList().then((list) => {
+                const supportsFacingMode = navigator.mediaDevices.getSupportedConstraints()
+                    .facingMode;
+
+                if (supportsFacingMode && list.length > 1) {
+                    setFacingMode(supportsFacingMode);
+                }
+            });
         }
     }, []);
 

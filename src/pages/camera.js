@@ -9,7 +9,7 @@ function CameraPage() {
             </Head>
             <div id="webgl-container" />
             {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-            <video id="video"  />
+            <video id="video" style={{ display: 'none' }} />
             <Camera />
         </>
     );

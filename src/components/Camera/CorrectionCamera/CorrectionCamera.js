@@ -14,7 +14,7 @@ function CorrectionCamera() {
         const colorVision = getColorVisionName();
 
         colorblindRenderer.render(colorVision);
-        // colorblindRenderer.animate();
+        colorblindRenderer.animate();
         setRenderer(colorblindRenderer);
 
         return () => {
@@ -31,11 +31,11 @@ function CorrectionCamera() {
     useEffect(renderCamera, []);
 
     // on resize
-    // useEffect(() => {
-    //     if (renderer) {
-    //         renderer.handleResize();
-    //     }
-    // }, [size]);
+    useEffect(() => {
+        if (renderer) {
+            renderer.handleResize();
+        }
+    }, [size]);
 
     // on camera flip
     useEffect(() => {
