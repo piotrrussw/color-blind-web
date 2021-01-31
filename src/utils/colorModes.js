@@ -1,29 +1,44 @@
-import * as THREE from 'three';
+import { colorMatrix } from '~/utils/colorMatrix';
 
-export const colorModes = {
-    normal: {
-        r: new THREE.Vector3(1, 0, 0),
-        g: new THREE.Vector3(0, 1, 0),
-        b: new THREE.Vector3(0, 0, 1),
-    },
-    protanopia: {
-        r: new THREE.Vector3(0.56667, 0.43333, 0),
-        g: new THREE.Vector3(0.55833, 0.44167, 0),
-        b: new THREE.Vector3(0, 0.24167, 0.75833),
-    },
-    deuteranopia: {
-        r: new THREE.Vector3(0.625, 0.375, 0),
-        g: new THREE.Vector3(0.7, 0.3, 0),
-        b: new THREE.Vector3(0, 0.3, 0.7),
-    },
-    tritanopia: {
-        r: new THREE.Vector3(0.95, 0.05, 0),
-        g: new THREE.Vector3(0, 0.43333, 0.56667),
-        b: new THREE.Vector3(0, 0.475, 0.525),
-    },
-    achromatopsia: {
-        r: new THREE.Vector3(0.299, 0.587, 0.114),
-        g: new THREE.Vector3(0.299, 0.587, 0.114),
-        b: new THREE.Vector3(0.299, 0.587, 0.114),
-    },
+const calcVector = (values, intensity) => {
+    /*
+        e.g.
+        [a, b] = values
+
+        a < b:
+            b - a       -> 100
+            x           -> intensity
+
+            x = (b - a) * intensity / 100
+            return a + x
+        a >= b:
+            a - b       -> 100
+            x           -> intensity
+
+            x = (a - b) * intensity / 100
+            return a - x
+     */
+
+    return Object.keys(values).reduce((acc, curr) => {
+        acc[curr] = values[curr].map(([min, max]) => {
+            if (intensity === 0) {
+                return min;
+            }
+
+            if (min < max) {
+                const val = ((max - min) * intensity) / 100;
+                return min + val;
+            } else {
+                const val = ((min - max) * intensity) / 100;
+                return min - val;
+            }
+        });
+
+        return acc;
+    }, {});
+};
+
+export const getColorModes = (intensity, colorVision) => {
+    const values = colorMatrix[colorVision];
+    return calcVector(values, intensity);
 };

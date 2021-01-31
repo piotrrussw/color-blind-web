@@ -9,7 +9,7 @@ function ColorBlindType() {
         const id = parseInt(event.target.value);
 
         if (id !== store.colorVision) {
-            dispatch({ colorVision: id });
+            dispatch({ colorVision: id, correctionLevel: 0 });
         }
     };
 

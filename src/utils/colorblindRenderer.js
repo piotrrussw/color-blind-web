@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 import { FragmentShader, VertexShader } from '~/utils/shaders';
 
-import { colorModes } from '~/utils/colorModes';
+import { getColorModes } from '~/utils/colorModes';
 import { getMediaConstraints } from '~/utils/media';
 
 class ColorblindRenderer {
@@ -12,6 +12,7 @@ class ColorblindRenderer {
 
     render(colorVision, isFrontCamera) {
         this.colorVision = colorVision;
+        this.intensity = 0;
         this.initWebcamInput(isFrontCamera);
         this.init();
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -71,6 +72,15 @@ class ColorblindRenderer {
         }
     }
 
+    updateIntensity(intensity) {
+        const { r, g, b } = getColorModes(intensity, this.colorVision);
+
+        this.intensity = intensity;
+        this.material.uniforms.r.value = new THREE.Vector3(r[0], r[1], r[2]);
+        this.material.uniforms.g.value = new THREE.Vector3(g[0], g[1], g[2]);
+        this.material.uniforms.b.value = new THREE.Vector3(b[0], b[1], b[2]);
+    }
+
     flipCamera(type) {
         if (!this.stream) {
             return false;
@@ -111,37 +121,34 @@ class ColorblindRenderer {
     }
 
     initMesh() {
+        this.getMaterial();
+
         const geometry = new THREE.PlaneBufferGeometry();
-        const material = this.getMaterial();
-        const mesh = new THREE.Mesh(geometry, material);
+        const mesh = new THREE.Mesh(geometry, this.material);
 
         this.scene.add(mesh);
     }
 
     getMaterial() {
+        const { r, g, b } = getColorModes(this.intensity, this.colorVision);
         const uniforms = {
             map: { value: undefined },
-            r: { value: colorModes[this.colorVision].r },
-            g: { value: colorModes[this.colorVision].g },
-            b: { value: colorModes[this.colorVision].b },
+            r: { value: new THREE.Vector3(r[0], r[1], r[2]) },
+            g: { value: new THREE.Vector3(g[0], g[1], g[2]) },
+            b: { value: new THREE.Vector3(b[0], b[1], b[2]) },
         };
 
-        const material = new THREE.ShaderMaterial({
+        this.material = new THREE.ShaderMaterial({
             uniforms: uniforms,
             vertexShader: VertexShader,
             fragmentShader: FragmentShader,
         });
 
-        material.uniforms.map.value = this.texture;
-        material.transparent = true;
+        this.material.uniforms.map.value = this.texture;
+        this.material.transparent = true;
 
         // this.materialInstances.push(material);
-
-        return material;
-    }
-
-    updateMaterial() {
-        return null;
+        // return this.material;
     }
 }
 

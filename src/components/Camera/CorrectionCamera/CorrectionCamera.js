@@ -34,16 +34,23 @@ function CorrectionCamera() {
     useEffect(() => {
         if (renderer) {
             renderer.handleResize();
+            // renderer.updateIntensity();
         }
     }, [size]);
 
     // on camera flip
     useEffect(() => {
-        console.log('flip');
         if (renderer) {
             renderer.flipCamera(store.cameraType);
         }
     }, [store.cameraType]);
+
+    // on correction change
+    useEffect(() => {
+        if (renderer) {
+            renderer.updateIntensity(store.correctionLevel);
+        }
+    }, [store.correctionLevel]);
 
     return null;
 }
