@@ -1,17 +1,29 @@
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { IconReverseCamera, IconSettings } from '~/components/Common/Icons';
 import { useStore } from '~/store';
+import classNames from 'classnames';
 import { COLOR_VISION_TYPES } from '~/constants';
 import Header from '~/components/Common/Header';
 import styles from '~/components/Camera/TopBar/TopBar.module.scss';
 
 function TopBar() {
     const [store, dispatch] = useStore();
+    const [facingMode, setFacingMode] = useState(false);
 
     const handleReverseCamera = () => {
-        const reversed = store.cameraTypes.find(({ id }) => id !== store.cameraType);
-        dispatch({ cameraType: reversed.id });
+        if (facingMode) {
+            const reversed = store.cameraTypes.find(({ id }) => id !== store.cameraType);
+            dispatch({ cameraType: reversed.id });
+        }
     };
+
+    useEffect(() => {
+        if (navigator.mediaDevices) {
+            const supportsFacingMode = navigator.mediaDevices.getSupportedConstraints().facingMode;
+            setFacingMode(supportsFacingMode);
+        }
+    }, []);
 
     const colorVision = COLOR_VISION_TYPES.find(({ id }) => id === store.colorVision);
 
@@ -26,7 +38,11 @@ function TopBar() {
                         role="button"
                         tabIndex="0"
                     >
-                        <IconReverseCamera className={styles.iconReverse} />
+                        <IconReverseCamera
+                            className={classNames(styles.iconReverse, {
+                                [styles.disabled]: !facingMode,
+                            })}
+                        />
                     </div>
                 </div>
                 <div className={styles.centerPanel}>

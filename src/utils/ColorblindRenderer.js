@@ -1,8 +1,22 @@
 import * as THREE from 'three';
-
 import { FragmentShader, VertexShader } from '~/utils/shaders';
-
 import { colorModes } from '~/utils/colorModes';
+
+const cameraConstraints = {
+    video: {
+        width: {
+            min: 1280,
+            ideal: 1920,
+            max: 2560,
+        },
+        height: {
+            min: 720,
+            ideal: 1080,
+            max: 1440,
+        },
+        facingMode: 'user',
+    },
+};
 
 class ColorblindRenderer {
     constructor(video) {
@@ -12,13 +26,13 @@ class ColorblindRenderer {
     render(colorVision) {
         this.colorVision = colorVision;
         this.init();
-        this.renderer = new THREE.WebGLRenderer({ antialias: true });
-
-        const canvas = this.renderer.domElement;
-        const { width, height } = document.body.getBoundingClientRect();
-        this.renderer.setSize(width, height);
-
-        document.getElementById('webgl-container').appendChild(canvas);
+        // this.renderer = new THREE.WebGLRenderer({ antialias: true });
+        //
+        // const canvas = this.renderer.domElement;
+        // const { width, height } = document.body.getBoundingClientRect();
+        // this.renderer.setSize(width, height);
+        //
+        // document.getElementById('webgl-container').appendChild(canvas);
     }
 
     animate() {
@@ -28,10 +42,10 @@ class ColorblindRenderer {
 
     init() {
         this.initWebcamInput();
-        this.initCamera();
-        this.initScene();
-        this.initTexture();
-        this.initMesh();
+        // this.initCamera();
+        // this.initScene();
+        // this.initTexture();
+        // this.initMesh();
     }
 
     destroy() {
@@ -60,7 +74,28 @@ class ColorblindRenderer {
 
     initWebcamInput() {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
+            navigator.mediaDevices.getUserMedia(cameraConstraints).then((stream) => {
+                this.stream = stream;
+                this.video.srcObject = stream;
+                this.video.play();
+            });
+        }
+    }
+
+    flipCamera(type) {
+        if (!this.stream) {
+            return false;
+        }
+
+        this.stream.getTracks().forEach((t) => t.stop());
+
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            const facingMode = type === 1 ? 'user' : 'environment';
+            const constraints = { ...cameraConstraints };
+            constraints.video.facingMode = facingMode;
+
+            navigator.mediaDevices.getUserMedia(cameraConstraints).then((stream) => {
+                this.stream = stream;
                 this.video.srcObject = stream;
                 this.video.play();
             });

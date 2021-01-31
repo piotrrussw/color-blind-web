@@ -1,7 +1,3 @@
-// camera
-export const FLASH_MODE_OFF = 'off';
-export const FLASH_MODE_ON = 'torch';
-
 // color vision types
 export const COLOR_VISION_TYPES = [
     { id: 1, label: 'Normal vision', colorDeficiency: null, value: 'normal' },
@@ -17,8 +13,8 @@ export const COLOR_VISION_TYPES = [
 ];
 
 export const CAMERA_TYPES = [
-    { id: 1, label: 'back' },
-    { id: 2, label: 'front' },
+    { id: 1, label: 'front' },
+    { id: 2, label: 'back' },
 ];
 
 export const COLOR_NAMES_TYPES = [
