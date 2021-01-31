@@ -1,5 +1,7 @@
 import * as THREE from 'three';
+
 import { FragmentShader, VertexShader } from '~/utils/shaders';
+
 import { colorModes } from '~/utils/colorModes';
 import { getMediaConstraints } from '~/utils/media';
 
@@ -8,8 +10,9 @@ class ColorblindRenderer {
         this.video = video;
     }
 
-    render(colorVision) {
+    render(colorVision, isFrontCamera) {
         this.colorVision = colorVision;
+        this.initWebcamInput(isFrontCamera);
         this.init();
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
 
@@ -26,7 +29,6 @@ class ColorblindRenderer {
     }
 
     init() {
-        this.initWebcamInput();
         this.initCamera();
         this.initScene();
         this.initTexture();
@@ -57,8 +59,8 @@ class ColorblindRenderer {
         this.renderer.setSize(window.innerWidth, window.innerHeight);
     }
 
-    initWebcamInput() {
-        const constraints = getMediaConstraints(true);
+    initWebcamInput(isFrontCamera) {
+        const constraints = getMediaConstraints(isFrontCamera);
 
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia(constraints).then((stream) => {

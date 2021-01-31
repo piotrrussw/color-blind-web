@@ -13,7 +13,7 @@ function CorrectionCamera() {
         const colorblindRenderer = new ColorblindRenderer(video);
         const colorVision = getColorVisionName();
 
-        colorblindRenderer.render(colorVision);
+        colorblindRenderer.render(colorVision, store.cameraType === 1);
         colorblindRenderer.animate();
         setRenderer(colorblindRenderer);
 
