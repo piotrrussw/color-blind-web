@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import ColorblindRenderer from '~/utils/ColorblindRenderer';
+import ColorblindRenderer from '~/utils/colorblindRenderer';
 import { useStore } from '~/store';
 import { useResize } from '~/hooks';
 
