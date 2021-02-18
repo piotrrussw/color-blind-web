@@ -4,7 +4,7 @@ import { useStore } from '~/store';
 import { useResize } from '~/hooks';
 
 function CorrectionCamera() {
-    const [store] = useStore();
+    const [store, dispatch] = useStore();
     const [renderer, setRenderer] = useState(null);
     const size = useResize();
 
@@ -15,6 +15,11 @@ function CorrectionCamera() {
 
         colorblindRenderer.render(colorVision, store.cameraType === 1);
         colorblindRenderer.animate();
+
+        colorblindRenderer.on('color-name', (props) => {
+            dispatch({ colorName: props.name[1] });
+        });
+
         setRenderer(colorblindRenderer);
 
         return () => {

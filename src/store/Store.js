@@ -8,16 +8,25 @@ const initialState = {
     cameraTypes: CAMERA_TYPES,
     correctionLevel: 0,
     showColorLabels: true,
+    colorName: null,
 };
 
+function init(initialStore) {
+    const cachedStore = localStorage.getItem('store');
+    return cachedStore ? JSON.parse(cachedStore) : initialStore;
+}
+
+// update store
 function reducer(state, action) {
-    return { ...state, ...action };
+    const newStore = { ...state, ...action };
+    localStorage.setItem('store', JSON.stringify(newStore));
+    return newStore;
 }
 
 const StoreContext = createContext(null);
 
 function StoreProvider(props) {
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = useReducer(reducer, initialState, init);
     return <StoreContext.Provider value={[state, dispatch]} {...props} />;
 }
 

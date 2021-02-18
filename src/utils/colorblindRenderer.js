@@ -4,9 +4,12 @@ import { FragmentShader, VertexShader } from '~/utils/shaders';
 
 import { getColorModes } from '~/utils/colorModes';
 import { getMediaConstraints } from '~/utils/media';
+import { getColorName } from '~/utils/colorName';
 
 class ColorblindRenderer {
     constructor(video) {
+        // eslint-disable-next-line no-undef
+        this.listeners = new Map();
         this.video = video;
     }
 
@@ -25,6 +28,7 @@ class ColorblindRenderer {
     }
 
     animate() {
+        this.setColorName();
         this.animationInstance = requestAnimationFrame(() => this.animate());
         this.renderer.render(this.scene, this.camera);
     }
@@ -146,9 +150,48 @@ class ColorblindRenderer {
 
         this.material.uniforms.map.value = this.texture;
         this.material.transparent = true;
+    }
 
-        // this.materialInstances.push(material);
-        // return this.material;
+    rgbToHex(r, g, b) {
+        if (r > 255 || g > 255 || b > 255) throw 'Invalid color component';
+        return ((r << 16) | (g << 8) | b).toString(16);
+    }
+
+    setColorName() {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const width = this.video.videoWidth;
+        const height = this.video.videoHeight;
+
+        canvas.width = width;
+        canvas.height = height;
+
+        ctx.drawImage(this.video, 0, 0);
+
+        const { data } = ctx.getImageData(width / 2, height / 2, 1, 1);
+        const [r, g, b] = data;
+
+        const hex = '#' + ('000000' + this.rgbToHex(r, g, b)).slice(-6);
+        const name = getColorName(hex);
+
+        this.trigger('color-name', { hex, name });
+    }
+
+    trigger(label, ...args) {
+        const task = (inListener, label, ...args) => {
+            const listeners = inListener.get(label);
+
+            if (listeners && listeners.length) {
+                listeners.forEach((listener) => listener(...args));
+            }
+        };
+
+        task(this.listeners, label, ...args);
+    }
+
+    on(label, callback) {
+        this.listeners.has(label) || this.listeners.set(label, []);
+        this.listeners.get(label).push(callback);
     }
 }
 

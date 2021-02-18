@@ -3,7 +3,9 @@ import '~/styles/base.scss';
 import Head from 'next/head';
 import Meta from '~/components/Common/Head/Meta';
 import PropTypes from 'prop-types';
-import StoreProvider from '~/store';
+import dynamic from 'next/dynamic';
+
+const StoreProvider = dynamic(() => import('~/store/Store'), { ssr: false });
 
 function App({ Component, pageProps }) {
     return (

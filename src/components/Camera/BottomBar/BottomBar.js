@@ -18,6 +18,9 @@ function BottomBar() {
     return (
         <div className={styles.container}>
             <div className={styles.sliderWrapper}>
+                <div className={styles.colorLabel}>
+                    <p>Target color: {store.colorName}</p>
+                </div>
                 <div className={styles.correctionLabel}>
                     <p>correction level</p>
                     <span>&nbsp;({store.correctionLevel}%)</span>

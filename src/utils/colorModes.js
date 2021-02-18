@@ -1,24 +1,6 @@
 import { colorMatrix } from '~/utils/colorMatrix';
 
 const calcVector = (values, intensity) => {
-    /*
-        e.g.
-        [a, b] = values
-
-        a < b:
-            b - a       -> 100
-            x           -> intensity
-
-            x = (b - a) * intensity / 100
-            return a + x
-        a >= b:
-            a - b       -> 100
-            x           -> intensity
-
-            x = (a - b) * intensity / 100
-            return a - x
-     */
-
     return Object.keys(values).reduce((acc, curr) => {
         acc[curr] = values[curr].map(([min, max]) => {
             if (intensity === 0) {

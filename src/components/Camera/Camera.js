@@ -2,6 +2,7 @@ import TopBar from '~/components/Camera/TopBar';
 import CorrectionCamera from '~/components/Camera/CorrectionCamera';
 import BottomBar from '~/components/Camera/BottomBar';
 import styles from '~/components/Camera/Camera.module.scss';
+import ColorTrigger from '~/components/Camera/ColorTrigger';
 
 function Camera() {
     return (
@@ -9,6 +10,7 @@ function Camera() {
             <TopBar />
             <CorrectionCamera />
             <BottomBar />
+            <ColorTrigger />
         </main>
     );
 }
