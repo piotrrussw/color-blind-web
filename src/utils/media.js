@@ -14,8 +14,8 @@ export const getMediaConstraints = (isFrontCamera) => {
     let legacyVideoParams = { width: { min: 320, max: 640 } };
 
     if (supports['frameRate']) {
-        modernVideoParams.frameRate = { ideal: 15, max: 30 };
-        legacyVideoParams.frameRate = { ideal: 10, max: 30 };
+        modernVideoParams.frameRate = { ideal: 10, max: 20 };
+        legacyVideoParams.frameRate = { ideal: 10, max: 20 };
     }
 
     config.video = modernVideoParams;

@@ -30,7 +30,7 @@ function CameraPage() {
         <ErrorBoundary>
             <div id="webgl-container" />
             {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-            <video id="video" style={{ display: 'none' }} />
+            <video id="video" style={{ display: 'none' }} autoPlay playsInline />
             <Camera />
         </ErrorBoundary>
     );
