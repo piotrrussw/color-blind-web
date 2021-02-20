@@ -5,6 +5,7 @@ import Meta from '~/components/Common/Head/Meta';
 import PropTypes from 'prop-types';
 import dynamic from 'next/dynamic';
 
+// No need for SSR in this app
 const StoreProvider = dynamic(() => import('~/store/Store'), { ssr: false });
 
 function App({ Component, pageProps }) {
